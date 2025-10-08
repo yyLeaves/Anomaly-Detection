@@ -111,7 +111,7 @@ python test_fastflow.py \
   --gpu 0
 ```
 
-The script reuses the training helpers to construct the datamodule, loads the specified checkpoint, and saves `<image_stem>_anomaly_map.npy` files under `--output_dir`. Pass `--metadata <path>` if you want a JSON manifest listing the saved maps.
+The script reuses the training helpers to construct the datamodule, loads the specified checkpoint, and saves `<image_stem>_anomaly_map.npy` files under `--output_dir/anomaly_maps/` (with PNG prediction masks under `--output_dir/prediction_masks/`). Each result is also mirrored into `maps_fastflow/<split>/anomaly_maps/` and `maps_fastflow/<split>/prediction_masks/` for easy downstream use.
 
 ## Post-processing FastFlow Outputs
 
@@ -128,6 +128,7 @@ python fastflow_postprocess.py \
 - Supply the directory that contains the raw anomaly maps (`--anomaly-dir`) and the body-mask tree (`--body-mask-dir`).  
 - `--path-replace` rewrites path components when body masks live in a sibling folder (e.g. replace `img` with `bodymask`). Pass it multiple times if you need several substitutions.
 - The script preserves the relative layout while writing masked maps to `--output-dir`. By default it stops if a body mask is missing; add `--skip-missing` to emit warnings instead.
+- Provide `--image-dir` (and optional `--image-replace`) together with `--comparison-dir` to generate side-by-side panels showing the original image, the raw anomaly map, and the masked anomaly map using the chosen colormap.
 
 ## Notes
 
