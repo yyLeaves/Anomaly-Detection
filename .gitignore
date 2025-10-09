@@ -8,3 +8,6 @@ __pycache__/
 /maps_fastflow/
 /overlays_fastflow/
 /postprocessed_anomaly_maps/
+/prediction_mask_comparisons/
+/prediction_masks_fastflow/
+

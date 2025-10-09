@@ -125,7 +125,7 @@ The script reconstructs the dataset layout under `--output_dir`, saving `<image>
 
 ## Post-processing FastFlow Outputs
 
-Run `apply_bodymask_fastflow.py` to multiply anomaly maps with anatomical body masks and optionally create visual summaries:
+Run `apply_bodymask_fastflow.py` to multiply anomaly maps (and optional prediction masks) by the anatomical body masks:
 
 ```
 python apply_bodymask_fastflow.py \
@@ -134,24 +134,17 @@ python apply_bodymask_fastflow.py \
   --output-dir postprocessed_anomaly_maps \
   --path-replace anomaly_maps:test \
   --path-replace img:bodymask \
-  --image-dir /local/scratch/koepchen/synth23_pelvis_v8_png \
-  --image-replace anomaly_maps:test \
-  --comparison-dir comparisons_fastflow \
-  --overlay-dir overlays_fastflow \
-  --comparison-cmap magma \
-  --overlay-alpha 0.6
+  --prediction-mask-dir prediction_masks_fastflow
 ```
 
 - `--anomaly-dir`: Root of the exported anomaly maps (respects their relative subfolders).  
 - `--body-mask-dir`: Root of the dataset containing the body-mask folders; combine with `--path-replace` to swap components (e.g. `anomaly_maps` → `test` and `img` → `bodymask`).  
-- `--output-dir`: Destination for masked maps; set `--skip-missing` to ignore slices without masks.  
-- `--image-dir` / `--image-replace`: Required for visualisations—point to the original images so panels/overlays can be produced.  
-- `--comparison-dir`: Writes side-by-side PNGs (image, anomaly map, masked anomaly map).  
-- `--overlay-dir`: Stores RGB overlays of the heatmaps blended onto the original anatomy (`--overlay-alpha` controls the blend).  
+- `--output-dir`: Destination for masked anomaly maps; set `--skip-missing` to ignore slices without masks.  
+- `--prediction-mask-dir`: Applies the body mask to existing prediction masks and writes the result to this directory. Adjust `--raw-prediction-dir` if the raw masks live outside the default `prediction_masks/` tree.
 
-A summary line reports how many anomaly maps were processed and where masked maps, comparison panels, and overlays were written.
+A summary line reports how many anomaly maps were processed and where masked maps (and prediction masks, if requested) were written.
 
-If you already have masked anomaly maps and only need the visualisations, run the same command with `--masked-dir postprocessed_anomaly_maps/test` and omit `--body-mask-dir`. The script will reuse the existing masked arrays, producing comparison panels and overlays without reapplying the body mask.
+If you already have masked anomaly maps, you can rerun the command with `--masked-dir postprocessed_anomaly_maps/test` and omit `--body-mask-dir` to regenerate prediction masks only.
 
 ## Visualising Processed Anomaly Maps
 
@@ -169,4 +162,34 @@ python visualize_processed_anomaly_maps.py \
   --overlay-alpha 0.6
 ```
 
-This CLI wraps the visualisation branch directly: it compares each original anomaly map with its masked counterpart, writing the same comparison panels and overlays without touching the underlying data.
+This CLI handles the visualisation (comparison panels and overlays) without modifying the anomaly maps or prediction masks.
+
+## Exporting Prediction Masks
+
+If you need binary prediction masks derived from the masked anomaly maps, reuse the pixel threshold stored in the FastFlow checkpoint:
+
+```
+python export_prediction_masks.py \
+  --masked-dir postprocessed_anomaly_maps/test \
+  --checkpoint fastflow/synth23_pelvis_v8_png_fastflow/weights/best-v2.ckpt \
+  --output-dir prediction_masks_fastflow
+```
+
+This helper thresholds masked anomaly maps using the learned pixel threshold stored in the checkpoint (useful when you are not reusing `apply_bodymask_fastflow.py` for prediction masks).
+
+## Visualising Prediction Masks
+
+`visualize_processed_prediction_masks.py` compares the raw prediction masks with their body-masked counterparts. Example:
+
+```
+python visualize_processed_prediction_masks.py \
+  --raw-dir extracted_anomaly_maps_fastflow/prediction_masks/test \
+  --masked-dir prediction_masks_fastflow/test \
+  --image-dir /local/scratch/koepchen/synth23_pelvis_v8_png \
+  --image-replace prediction_masks:test \
+  --output-dir prediction_mask_comparisons \
+  --cmap magma \
+  --overlay-alpha 0.6
+```
+
+Provide `--image-dir`/`--image-replace` if you want overlay panels; otherwise the script produces side-by-side PNGs showing raw vs. body-masked masks without touching the underlying data.
