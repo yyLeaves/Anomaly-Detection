@@ -17,3 +17,7 @@ __pycache__/
 /prediction_mask_comparisons_filtered/
 /postprocessed_anomaly_maps_png/
 /filtered_prediction_masks_fastflow/
+/results
+apply_bodymask_fastflow_old.py
+test.py
+/reports

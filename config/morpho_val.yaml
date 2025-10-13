@@ -1,0 +1,75 @@
+# Morphology Post-processing Configuration for Validation
+# All paths are specified here - no command line parameters needed
+
+# ============ Paths Configuration ============
+paths:
+  #validation_masked_pred_masks
+  output_base: "./prediction_masks_fastflow/valid/Ungood/img"
+  
+  # Output directories
+  visualization_base: "./visualizations"
+  reports_base: "./reports"
+
+# ============ Morphology Processing Configuration Baseline ============
+morphology:
+  # Dilation and erosion iterations
+  dilate_iterations: 1
+  erode_iterations: 1
+  
+  # Number of (dilation + erosion) rounds
+  num_rounds: 1
+  
+  # Morphological kernel
+  kernel_size: 5  # Must be odd number
+  kernel_shape: "ellipse"  # "ellipse" or "rect"
+  
+  # Connected component filtering
+  min_component_size: 3  # Minimum pixels to keep
+  connectivity: 8  # 4 or 8 connectivity
+  
+  # Binarization
+  binarize_threshold: 0.5  # For normalizing [0,1] range masks
+
+# ============ Tuning Experiments ============
+# Multiple parameter combinations to test on validation set
+tuning_experiments:
+  - name: "baseline"
+    dilate_iterations: 1
+    erode_iterations: 1
+    num_rounds: 1
+    kernel_size: 5
+    min_component_size: 3
+  
+  - name: "aggressive"
+    dilate_iterations: 2
+    erode_iterations: 1
+    num_rounds: 1
+    kernel_size: 5
+    min_component_size: 3
+  
+  - name: "conservative"
+    dilate_iterations: 1
+    erode_iterations: 2
+    num_rounds: 1
+    kernel_size: 5
+    min_component_size: 3
+  
+  - name: "gentle"
+    dilate_iterations: 1
+    erode_iterations: 1
+    num_rounds: 2
+    kernel_size: 5
+    min_component_size: 3
+
+# ============ Visualization Configuration ============
+visualization:
+  cmap: "magma"
+  outline_threshold: 0.2
+  outline_alpha: 0.85
+  outline_thickness: 1
+
+# ============ Debug Configuration ============
+debug:
+  verbose: true
+  # max_samples: 10  # Uncomment to process only N samples for testing
+  save_intermediate: false  # Save dilation output separately
