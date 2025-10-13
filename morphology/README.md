@@ -85,5 +85,4 @@ Results are saved to:
 
 **Next Steps**:
 1. Test on other models val data
-2. Apply to test set with fixed parameters
-3. Integration with volume processor
+2. Integration with volume processor
