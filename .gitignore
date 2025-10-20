@@ -20,3 +20,16 @@ __pycache__/
 /body_masked_anomaly_maps_png/
 /body_masked_mask_comparisons
 /body_masked_masks_fastflow/
+
+/body_masked_anomaly_maps_png/
+/body_masked_mask_comparisons/
+/body_masked_masks_fastflow/
+
+apply_bodymask_fastflow_old.py
+test.py
+/reports
+/masks_raw
+/masks_ab
+/masks_morpho
+masks_3d
+/morphology/diagnose_masks.py

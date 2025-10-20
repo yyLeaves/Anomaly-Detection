@@ -96,8 +96,17 @@ def load_body_mask(path: Path, *, threshold: float) -> np.ndarray:
     mask_array = load_array(path)
     mask = mask_array.data
     if mask.ndim > 2:
-        # Collapse channel or extra trailing dimensions so masking works on 2D slices.
-        mask = np.max(mask, axis=tuple(range(2, mask.ndim))) if mask.ndim > 3 else np.max(mask, axis=-1)
+        # Many body masks are stored as RGB(A); use the first colour channel instead of maxing with alpha.
+        if mask.ndim == 3 and mask.shape[-1] <= 4:
+            mask = mask[..., 0]
+        else:
+            squeezed = np.squeeze(mask)
+            if squeezed.ndim == 3 and squeezed.shape[-1] <= 4:
+                mask = squeezed[..., 0]
+            else:
+                mask = squeezed
+    if mask.ndim > 2:
+        mask = mask.reshape(mask.shape[0], mask.shape[1], -1)[..., 0]
     if np.issubdtype(mask_array.dtype, np.integer):
         max_val = np.iinfo(mask_array.dtype).max
         if max_val > 0:
