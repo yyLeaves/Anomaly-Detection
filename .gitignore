@@ -33,3 +33,7 @@ test.py
 /masks_morpho
 masks_3d
 /morphology/diagnose_masks.py
+
+/post_process_outputs/
+/3D Volumes/
+/3D_Volumes/

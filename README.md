@@ -1,5 +1,27 @@
 # OOD Flow Training Utilities
 
+## Executive Summary
+
+When you already have FastFlow prediction masks (after training/extraction), the full post-processing pipeline is one command away:
+
+```
+python main_pipeline.py \
+  --input-dir extracted_anomaly_maps_fastflow_png/prediction_masks/test \
+  --body-mask-dir /path/to/dataset/root \
+  --output-root post_process_outputs \
+  --path-replace prediction_masks:test \
+  --path-replace img:bodymask \
+  --ground-truth-dir /path/to/dataset/root/test \
+  --metrics-mean-fraction-thresholds 0.0 0.02 0.05 0.1 \
+  --skip-missing-body-mask
+```
+
+1. Applies body masks, morphology, consecutive-slice filtering.
+2. Reconstructs raw & post-processed masks into 3D NIfTI volumes.
+3. Runs `evaluate_model_outputs.py` automatically to produce pixel-, slice-, and patient-level metrics (stored under `metrics/` inside the chosen output root).
+
+You’ll find stage-by-stage PNG outputs under `post_process_outputs/0*/...`, NIfTI volumes in `post_process_outputs/volumes/...`, and the metric summary in `post_process_outputs/metrics/metrics_summary.json`.
+
 This repository contains training entry points for flow-based anomaly detection models built on [anomalib](https://github.com/openvinotoolkit/anomalib). They are tailored for datasets organised with separate `img/` and `label/` folders (PNG images plus optional pixel-level masks) and focus on two architectures:
 
 - **CFlow** (`train_cflow.py`)

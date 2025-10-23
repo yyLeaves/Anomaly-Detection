@@ -61,6 +61,21 @@ tuning_experiments:
   #   kernel_size: 5
   #   min_component_size: 3
 
+# ============ Evaluation Configuration ============
+evaluation:
+  enabled: false
+  ground_truth_dir: "./ground_truth_masks"
+  replacements:
+    img: label
+  allowed_extensions:
+    - ".png"
+    - ".npy"
+    - ".npz"
+  prediction_threshold: null   # Use binary masks directly by default
+  ground_truth_threshold: null
+  skip_missing: true
+  store_per_slice: false
+
 # ============ Visualization Configuration ============
 visualization:
   cmap: "magma"
