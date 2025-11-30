@@ -169,6 +169,7 @@ def _compute_mean_positive_fraction_metrics(
         recall = _safe_divide(tp, tp + fn, 0.0)
         dice = _safe_divide(2 * tp, 2 * tp + fp + fn, 0.0)
         fnr = _safe_divide(fn, tp + fn, 0.0)
+        fpr = _safe_divide(fp, fp + tn, 0.0)
         tnr = _safe_divide(tn, tn + fp, 0.0)
         balanced_accuracy = (recall + tnr) / 2.0
 
@@ -178,6 +179,7 @@ def _compute_mean_positive_fraction_metrics(
                 "precision": precision,
                 "recall": recall,
                 "true_positive_rate": recall,
+                "false_positive_rate": fpr,
                 "dice_score": dice,
                 "false_negative_rate": fnr,
                 "balanced_accuracy": balanced_accuracy,
