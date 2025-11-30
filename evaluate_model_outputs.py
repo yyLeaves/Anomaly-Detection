@@ -25,6 +25,7 @@ def _safe_divide(numerator: float, denominator: float, default: float) -> float:
 def _compute_image_level_metrics(per_slice: list[SliceRecord]) -> dict[str, float]:
     tp = fp = tn = fn = 0
     missing = 0
+    evaluated = 0
 
     for record in per_slice:
         if getattr(record, "exclude_from_slice_metrics", False):
@@ -44,6 +45,7 @@ def _compute_image_level_metrics(per_slice: list[SliceRecord]) -> dict[str, floa
             fn += 1
         else:
             tn += 1
+        evaluated += 1
 
     precision = _safe_divide(tp, tp + fp, 0.0)
     recall = _safe_divide(tp, tp + fn, 0.0)
@@ -62,7 +64,7 @@ def _compute_image_level_metrics(per_slice: list[SliceRecord]) -> dict[str, floa
         "false_positives": fp,
         "true_negatives": tn,
         "false_negatives": fn,
-        "evaluated_slices": tp + fp + tn + fn,
+        "evaluated_slices": evaluated,
         "missing_ground_truth_slices": missing,
     }
 

@@ -123,6 +123,7 @@ class SliceRecord:
     true_negatives: int | None = None
     false_negatives: int | None = None
     missing_ground_truth: bool = False
+    exclude_from_slice_metrics: bool = False
 
 
 def compute_metrics(
@@ -147,10 +148,11 @@ def compute_metrics(
     for pred_path in prediction_files:
         relative = pred_path.relative_to(prediction_root)
         parts = {part.lower() for part in relative.parts}
-        is_whole_patient = "Ungood_whole_patient_scans" in parts
-        is_true_anomaly = "Ungood" in parts and not is_whole_patient
+        is_whole_patient = "ungood_whole_patient_scans" in parts
+        is_true_anomaly = "ungood" in parts and not is_whole_patient
 
         record = SliceRecord(relative_path=str(relative), ground_truth_path=None)
+        record.exclude_from_slice_metrics = is_whole_patient and not is_true_anomaly
 
         prediction_array = _prepare_array(load_array(pred_path).data, prediction_threshold)
 
@@ -179,7 +181,8 @@ def compute_metrics(
             prediction_threshold=None,
             ground_truth_threshold=None,
         )
-        metrics_accumulator.append(metrics)
+        if not record.exclude_from_slice_metrics:
+            metrics_accumulator.append(metrics)
 
         record.precision = metrics["precision"]
         record.recall = metrics["recall"]
