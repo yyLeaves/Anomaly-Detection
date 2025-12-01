@@ -76,3 +76,7 @@ masks_3d
 /fastflow_v8_nifti_wrn50_logs/
 /maps_cflow/
 filtered_metrics.json
+/exp1_extract/
+/exp2_extract/
+/exp2_models/
+/exp3_models/

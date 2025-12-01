@@ -126,6 +126,7 @@ def _compute_mean_positive_fraction_metrics(
     summary = {
         "num_patients": len(patient_mean_fraction),
         "num_patients_gt_positive": sum(1 for value in patient_gt_positive.values() if value),
+        "num_slices_evaluated": sum(len(fractions) for fractions in patient_fractions.values()),
         "mean_fraction_by_patient": patient_mean_fraction,
     }
 
@@ -218,8 +219,16 @@ def compute_anomaly_map_aurocs(
     image_labels: list[int] = []
     missing_ground_truth = 0
 
+    skipped_whole_patient = 0
+
     for anomaly_path in anomaly_files:
         relative = anomaly_path.relative_to(anomaly_map_root)
+        parts = {part.lower() for part in relative.parts}
+        is_whole_patient = "ungood_whole_patient_scans" in parts
+        is_true_anomaly = "ungood" in parts and not is_whole_patient
+        if is_whole_patient and not is_true_anomaly:
+            skipped_whole_patient += 1
+            continue
         gt_path, _ = _resolve_ground_truth_path(ground_truth_root, relative, replacements)
         if gt_path is None:
             missing_ground_truth += 1
@@ -242,6 +251,7 @@ def compute_anomaly_map_aurocs(
     result: dict[str, Any] = {
         "evaluated_slices": len(image_scores),
         "missing_ground_truth_slices": missing_ground_truth,
+        "skipped_whole_patient_slices": skipped_whole_patient,
         "pixel_auroc": None,
         "image_auroc": None,
     }
@@ -434,6 +444,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             "patient_summary": results["patient_summary"],
             "patient_threshold_details": results["patient_threshold_details"],
             "per_slice": [asdict(record) for record in results["per_slice"]],
+            "anomaly_auroc_metrics": results["anomaly_auroc_metrics"],
         }
         args.output_json.parent.mkdir(parents=True, exist_ok=True)
         with args.output_json.open("w", encoding="utf-8") as fh:
