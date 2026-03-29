@@ -1,31 +1,20 @@
 # Post-Processing Pipeline — MR-OOD Anomaly Detection
 
-Post-processing and evaluation pipeline for binary anomaly prediction masks produced by `ood-train`. Applies body masking, morphological filtering, and a 3D persistence filter, then computes pixel-, slice-, and patient-level metrics.
-
----
-
-## Pipeline Overview
-
-| Repository | Role |
-| :--- | :--- |
-| `../OOD-Data-Preprocessing` | Dataset preparation (NIfTI → PNG, body mask generation) |
-| `../ood-train` | Model training and anomaly map / prediction mask extraction |
-| **this repo** | Post-processing, evaluation, and visualization of model outputs |
-| `../mp_visualizations` | Additional analysis notebooks and presentation figures |
+Post-processing and evaluation for binary anomaly prediction masks produced by the detection models (FastFlow, CFlow). Takes raw prediction masks and body masks as input, applies body masking, morphological filtering, and a 3D persistence filter, then computes pixel-, slice-, and patient-level metrics.
 
 ---
 
 ## Input Structure
 
-Raw prediction masks from `ood-train`:
+Raw prediction masks from the model extraction step:
 
 ```
 <extraction_output_root>/
-  anomaly_maps/test/{good,Ungood}/img/    ← per-slice .npy anomaly scores
+  anomaly_maps/test/{good,Ungood}/img/     ← per-slice .npy anomaly scores
   prediction_masks/test/{good,Ungood}/img/ ← binary PNG masks (0 or 255)
 ```
 
-Body masks and ground truth from `OOD-Data-Preprocessing`:
+Body masks and ground-truth labels from the preprocessing step:
 
 ```
 <dataset_root>/test/
@@ -57,13 +46,13 @@ Body masks and ground truth from `OOD-Data-Preprocessing`:
 
 ## Post-Processing Stages
 
-The pipeline applies five sequential stages to the raw binary prediction masks:
+The pipeline applies the following stages sequentially to the raw binary prediction masks:
 
-1. **Body masking** (`apply_bodymask.py`): Multiply prediction masks element-wise by the anatomical body mask to remove out-of-body detections.
-2. **Component filtering** (`morphology/processor.py`): Binarize (threshold=0.5) and remove connected components smaller than **τ_area = 3 pixels**.
+1. **Body masking** (`apply_bodymask.py`): Multiply each prediction mask element-wise by the anatomical body mask to remove out-of-body detections. The body mask subdirectory (`bodymask/`) is resolved automatically from the dataset root.
+2. **Small-component filtering** (`morphology/processor.py`): Binarize (threshold=0.5) and remove connected components smaller than **τ_area = 3 pixels**.
 3. **Morphological closing** (`morphology/processor.py`): Dilation × N followed by erosion × N. Fills small intra-region gaps and smooths contours.
-4. **3D stacking** (`morphology/stack_to_3d.py`): Stack 2D PNG slices into patient-wise 3D NIfTI volumes.
-5. **3D persistence filter** (`filter_prediction_masks_consecutive.py`): Discard any 2D connected component that does not overlap with an anomaly region in at least one neighbouring slice.
+4. **3D persistence filter** (`filter_prediction_masks_consecutive.py`): Discard any 2D connected component that does not overlap with an anomaly region in at least one neighbouring slice.
+5. **NIfTI reconstruction** (`morphology/stack_to_3d.py`): Stack 2D PNG slices into patient-wise 3D NIfTI volumes for both the raw and post-processed masks.
 
 Default morphology parameters (configurable via CLI or `config/morpho_val.yaml`):
 
@@ -86,7 +75,7 @@ Default morphology parameters (configurable via CLI or `config/morpho_val.yaml`)
 - **Slice level**: each 2D slice classified as positive/negative; standard binary classification metrics.
 - **Patient level**: mean positive fraction (α_mean) per patient. Patients classified as anomalous if α_mean ≥ threshold; metrics reported for multiple thresholds (default: 0.0, 0.02, 0.05, 0.1).
 
-`main_pipeline.py` automatically evaluates both the raw input masks and the stage 02 output (`02_morphology_png`) and writes both to `metrics/metrics_summary.json`.
+`main_pipeline.py` evaluates both the raw input masks and the stage-2 output (`02_morphology_png`) and writes both to `metrics/metrics_summary.json`. Stage 3 (`03_consecutive_filtered_png`) is the final mask used for 3D NIfTI export and qualitative inspection; evaluation is on stage 2.
 
 ### Standalone Metrics
 
@@ -94,7 +83,6 @@ Default morphology parameters (configurable via CLI or `config/morpho_val.yaml`)
 python evaluate_model_outputs.py \
   --prediction-dir post_process_outputs/02_morphology_png \
   --ground-truth-dir /path/to/dataset/test \
-  --ground-truth-replace img:label \
   --mean-fraction-thresholds 0.0 0.02 0.05 0.1 \
   --output-json metrics.json
 ```
@@ -110,12 +98,11 @@ python main_pipeline.py \
   --input-dir /path/to/prediction_masks/test \
   --body-mask-dir /path/to/dataset/root \
   --output-root post_process_outputs \
-  --path-replace prediction_masks:test \
-  --path-replace img:bodymask \
   --ground-truth-dir /path/to/dataset/root/test \
-  --metrics-mean-fraction-thresholds 0.0 0.02 0.05 0.1 \
   --skip-missing-body-mask
 ```
+
+The body mask subdirectory (`bodymask/`) and the ground-truth label subdirectory (`label/`) are resolved automatically. The `--ground-truth-dir` argument is optional; omitting it skips metric computation and ground-truth volume export.
 
 ### Morphology Parameter Tuning
 
@@ -159,13 +146,13 @@ python visualization/visualize_processed_prediction_masks.py \
 Post-Processing-Pipeline/
 │
 ├── main_pipeline.py                        # End-to-end pipeline entrypoint
-├── apply_bodymask.py                       # Stage 0: body mask application
+├── apply_bodymask.py                       # Stage 1: body mask application
 ├── postprocess_utils.py                    # Shared I/O and array utilities
 ├── filter_prediction_masks_consecutive.py  # Stage 4: 3D persistence filter
 ├── evaluate_model_outputs.py               # Pixel/slice/patient metrics
 ├── compute_pixel_metrics.py                # Per-slice metric primitives
 │
-├── morphology/                             # Stages 1–3
+├── morphology/                             # Stages 2–3 + NIfTI reconstruction
 │   ├── processor.py                        # MorphologyProcessor, BatchProcessor
 │   ├── stack_to_3d.py                      # BatchNIfTIStacker (2D PNG → 3D NIfTI)
 │   ├── slice_metrics.py                    # Metric helpers
