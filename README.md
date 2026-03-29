@@ -96,6 +96,19 @@ Default morphology parameters (configurable via CLI or `config/morpho_val.yaml`)
 --num-rounds 1              # number of (dilate+erode) rounds
 ```
 
+### Morphological Settings Evaluated
+
+Four variants were evaluated on the validation set to select the best trade-off between recall and precision. The **baseline** setting was selected for the report as the balanced compromise.
+
+| Experiment | Dilate | Erode | Rounds | Strategy | Area Preserved | CCs Removed | Used |
+| :--- | :---: | :---: | :---: | :--- | :---: | :---: | :---: |
+| **baseline** | 1 | 1 | 1 | Balanced — moderate gap-filling, preserves most structure | 84.65 % | 15 | ✓ |
+| aggressive | 2 | 1 | 1 | Maximise recall — keeps all detections, grows regions | 311.29 % | 0 | |
+| conservative | 1 | 2 | 1 | Maximise precision — suppresses small false positives | 24.57 % | 5 | |
+| gentle | 1 | 1 | 2 | Two closing rounds — fills larger gaps than baseline | 165.65 % | 5 | |
+
+> **Area Preserved** is the ratio of total post-processed anomaly area to raw prediction area on the validation set (97 slices). Values above 100 % indicate net growth from dilation; values below indicate net suppression from erosion or component removal. **CCs Removed** counts 2D connected components discarded by the minimum-size filter.
+
 ---
 
 ## Evaluation
