@@ -13,6 +13,21 @@ The pipeline refines raw model predictions in four stages:
 
 ---
 
+## Evaluation
+
+Evaluation is run automatically on both the raw and post-processed masks and saved to `metrics/metrics_summary.json`. Metrics are computed at three levels of granularity — from individual pixels up to whole patients:
+
+```mermaid
+flowchart TB
+    A["Post-processed Masks + Ground Truth Labels"]
+
+    A --> B["🔲 Pixel Level\nPrecision · Recall · Dice · FNR · Balanced Accuracy\naggregated over all predicted pixels"]
+    A --> C["🖼 Slice Level\nEach 2D slice → positive if any anomaly pixel present\nPrecision · Recall · F1 · Balanced Accuracy"]
+    A --> D["🧍 Patient Level\nα_mean = mean positive pixel fraction across all slices\nclassified as anomalous if α_mean ≥ θ\nevaluated at θ ∈ {0.0, 0.02, 0.05, 0.1}"]
+```
+
+---
+
 ## Input Structure
 
 Raw prediction masks from the model extraction step:
