@@ -1,0 +1,11 @@
+variant: 3way
+epochs: 64
+pretrained: true
+test_epochs: 10
+freeze_resnet: 20
+lr: 0.01
+optim: sgd
+batch_size: 16
+head_layer: 8
+workers: 8
+model_dir: ./results/cutpaste/models

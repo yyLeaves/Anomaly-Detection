@@ -92,3 +92,7 @@ filtered_metrics.json
 /exp4/
 /exp4_models/
 /exp4_extract/
+/RadImageNet_pytorch/
+*.pyc
+*.pyo
+.ipynb_checkpoints/

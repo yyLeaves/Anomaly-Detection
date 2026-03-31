@@ -1,0 +1,34 @@
+# CFA training / extraction config
+# Reference: BMAD/config/*_cfa.yaml + anomalib_cfa_gpu_png_image_AU.ipynb
+
+model:
+  name: cfa
+  backbone: resnet18
+  # No layers field — CFA uses its default feature layers (layer1/layer2/layer3)
+  learning_rate: 1.0e-3   # Adam lr (weight_decay and amsgrad are fixed in kd_models.py)
+  pre_processor: ~          # null → anomalib default
+  post_processor: ~
+
+train:
+  epochs: 100
+  batch_size: 32
+  num_workers: 8
+  accelerator: gpu
+  gpu: 0
+  seed: 42
+  data_root: ./datasets/synth23_pelvis_v7_png
+  output_root: ./results/cfa
+  name: ~                   # required: experiment name
+  early_stopping:           # remove this block to disable early stopping
+    monitor: image_AUROC
+    patience: 5
+    mode: max
+
+extract:
+  split: test               # test | valid
+  batch_size: 32
+  gpu: 0
+  map_size: 224
+  mask_threshold: 0.5
+  mask_output_format: png   # png | nifti
+  # checkpoint path is supplied via --checkpoint on the CLI

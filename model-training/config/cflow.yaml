@@ -1,0 +1,29 @@
+# CFlow (Conditional Normalising Flow) training / extraction config
+# Backbone can be: resnet18, resnet50, wide_resnet50_2
+# Prefix with "radimagenet_" (e.g. radimagenet_resnet50) to load RadImageNet weights.
+
+model:
+  name: cflow
+  backbone: wide_resnet50_2       # ImageNet pretrained (Experiment 2 in report)
+  radimagenet_ckpt: ~
+
+train:
+  epochs: 50
+  batch_size: 8
+  num_workers: 8
+  accelerator: gpu                # gpu | cpu | mps
+  gpus: [0]                        # list → multi-GPU DDP (indices within CUDA_VISIBLE_DEVICES); extend for multi-GPU: [0, 1, 2]
+  seed: 42
+  # Paths — override on the command line with --data_root / --output_root / --name
+  data_root: ./datasets/synth23_pelvis_v7_png
+  output_root: ./results/cflow
+  name: ~                         # required: experiment name (output sub-folder)
+
+extract:
+  split: test                     # test | valid
+  batch_size: 32
+  gpu: 0                          # -1 for CPU
+  map_size: 224
+  mask_threshold: 0.5
+  mask_output_format: png         # png | nifti
+  # checkpoint path is supplied via --checkpoint on the CLI

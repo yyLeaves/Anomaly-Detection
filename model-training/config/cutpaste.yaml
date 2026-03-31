@@ -1,0 +1,30 @@
+# CutPaste training / extraction config
+# Reference: BMAD/pytorch-cutpaste/
+
+model:
+  name: cutpaste
+  pretrained: true          # use ImageNet-pre-trained ResNet18
+  head_layer: 8             # number of 512-wide layers in the projection head (+ 128 output)
+  variant: 3way             # normal | scar | 3way
+
+train:
+  epochs: 64
+  batch_size: 16
+  num_workers: 8
+  lr: 0.01
+  optimizer: sgd            # sgd | adam
+  weight_decay: 3.0e-5
+  momentum: 0.9             # SGD only
+  freeze_resnet: 20         # freeze backbone for first N epochs, then unfreeze
+  accelerator: gpu          # gpu | cpu | mps
+  gpu: 0                    # GPU index; -1 for CPU
+  seed: 42
+  data_root: ./datasets/synth23_pelvis_v7_png
+  output_root: ./results/cutpaste
+  name: ~                   # required: experiment name
+
+extract:
+  split: test               # test | valid
+  batch_size: 32
+  gpu: 0
+  # checkpoint path is supplied via --checkpoint on the CLI

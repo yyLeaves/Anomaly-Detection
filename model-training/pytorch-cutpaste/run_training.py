@@ -1,0 +1,238 @@
+# head dims:512,512,512,512,512,512,512,512,128
+# code is basicly:https://github.com/google-research/deep_representation_one_class
+from pathlib import Path
+from tqdm import tqdm
+import datetime
+import argparse
+from data import TrainDataset, ValidDataset, get_train_transforms, get_valid_transforms
+
+import torch
+from torch import optim
+from torch.utils.data import DataLoader
+from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
+from torchvision import transforms
+import yaml
+
+
+from dataset import MVTecAT, Repeat
+from cutpaste import CutPasteNormal,CutPasteScar, CutPaste3Way, CutPasteUnion, cut_paste_collate_fn
+from model import ProjectionNet
+from eval import eval_model, test_model
+from utils import str2bool
+
+def run_training(data_type="camelyon",
+                 model_dir="models",
+                 epochs=256,
+                 pretrained=True,
+                 test_epochs=10,
+                 freeze_resnet=20,
+                 learninig_rate=0.03,
+                 optim_name="SGD",
+                 batch_size=64,
+                 head_layer=8,
+                 cutpate_type=CutPasteNormal,
+                 device = "cuda",
+                 workers=8,
+                 size = 256,
+                 data_root=None):
+    torch.multiprocessing.freeze_support()
+    # TODO: use script params for hyperparameter
+    # Temperature Hyperparameter currently not used
+    temperature = 0.2
+
+    weight_decay = 0.00003
+    momentum = 0.9
+    #TODO: use f strings also for the date LOL
+    model_name = f"model-{data_type}" + '-{date:%Y-%m-%d_%H_%M_%S}'.format(date=datetime.datetime.now() )
+
+    #augmentation:
+    min_scale = 1
+
+    # create Training Dataset and Dataloader
+    after_cutpaste_transform = transforms.Compose([])
+    after_cutpaste_transform.transforms.append(transforms.ToTensor())
+    after_cutpaste_transform.transforms.append(transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                                                    std=[0.229, 0.224, 0.225]))
+
+    train_transform = transforms.Compose([])
+    #train_transform.transforms.append(transforms.RandomResizedCrop(size, scale=(min_scale,1)))
+    train_transform.transforms.append(transforms.ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1, hue=0.1))
+    # train_transform.transforms.append(transforms.GaussianBlur(int(size/10), sigma=(0.1,2.0)))
+    train_transform.transforms.append(transforms.Resize((size,size)))
+    train_transform.transforms.append(cutpate_type(transform = after_cutpaste_transform))
+    # train_transform.transforms.append(transforms.ToTensor())
+
+    _dr = data_root if data_type == 'custom' else None
+    train_data = TrainDataset(data=data_type, transform=train_transform, data_root=_dr)
+
+    dataloader = DataLoader(Repeat(train_data, 3000), batch_size=batch_size, drop_last=True,
+                            shuffle=True, num_workers=workers, collate_fn=cut_paste_collate_fn,
+                            persistent_workers=True, pin_memory=True, prefetch_factor=5)
+
+    # create Model:
+    head_layers = [512]*head_layer+[128]
+    num_classes = 2 if cutpate_type is not CutPaste3Way else 3
+    model = ProjectionNet(pretrained=pretrained, head_layers=head_layers, num_classes=num_classes)
+    model.to(device)
+
+    if freeze_resnet > 0 and pretrained:
+        model.freeze_resnet()
+
+    loss_fn = torch.nn.CrossEntropyLoss()
+    if optim_name == "sgd":
+        optimizer = optim.SGD(model.parameters(), lr=learninig_rate, momentum=momentum,  weight_decay=weight_decay)
+        scheduler = CosineAnnealingWarmRestarts(optimizer, epochs)
+        #scheduler = None
+    elif optim_name == "adam":
+        optimizer = optim.Adam(model.parameters(), lr=learninig_rate, weight_decay=weight_decay)
+        scheduler = None
+    else:
+        print(f"ERROR unkown optimizer: {optim_name}")
+
+    step = 0
+    num_batches = len(dataloader)
+    def get_data_inf():
+        while True:
+            for out in enumerate(dataloader):
+                yield out
+    dataloader_inf =  get_data_inf()
+    # From paper: "Note that, unlike conventional definition for an epoch,
+    #              we define 256 parameter update steps as one epoch.
+    for step in range(epochs):
+        # model.eval()
+        # valid_auc, len_valid= eval_model(model_name, data_type, device=device,
+        #                     save_plots=False,
+        #                     size=size,
+        #                     show_training_data=False,
+        #                     model=model)
+        #                     #train_embed=batch_embeds)
+        # test_auc, len_test= test_model(model_name, data_type, device=device,
+        #                     save_plots=False,
+        #                     size=size,
+        #                     show_training_data=False,
+        #                     model=model)
+        epoch = int(step / 1)
+        if epoch == freeze_resnet:
+            model.unfreeze()
+        
+        batch_embeds = []
+        batch_idx, data = next(dataloader_inf)
+        xs = [x.to(device) for x in data]
+
+        # zero the parameter gradients
+        optimizer.zero_grad()
+
+        xc = torch.cat(xs, axis=0)
+        embeds, logits = model(xc)
+        
+#         embeds = F.normalize(embeds, p=2, dim=1)
+#         embeds1, embeds2 = torch.split(embeds,x1.size(0),dim=0)
+#         ip = torch.matmul(embeds1, embeds2.T)
+#         ip = ip / temperature
+
+#         y = torch.arange(0,x1.size(0), device=device)
+#         loss = loss_fn(ip, torch.arange(0,x1.size(0), device=device))
+
+        # calculate label
+        y = torch.arange(len(xs), device=device)
+        y = y.repeat_interleave(xs[0].size(0))
+        loss = loss_fn(logits, y)
+        
+
+        # regulize weights:
+        loss.backward()
+        optimizer.step()
+        if scheduler is not None:
+            scheduler.step(epoch)
+        
+        # print('loss', loss.item(), step)
+        
+#         predicted = torch.argmax(ip,axis=0)
+        predicted = torch.argmax(logits,axis=1)
+#         print(logits)
+#         print(predicted)
+#         print(y)
+        accuracy = torch.true_divide(torch.sum(predicted==y), predicted.size(0))
+        # print('acc', accuracy, step)
+        # if scheduler is not None:
+        #     print('lr', scheduler.get_last_lr()[0], step)
+        
+        # save embed for validation:
+        if test_epochs > 0 and epoch % test_epochs == 0:
+            batch_embeds.append(embeds.cpu().detach())
+
+        # run tests
+        if test_epochs > 0 and epoch % test_epochs == 0:
+            # run auc calculation
+            #TODO: create dataset only once.
+            #TODO: train predictor here or in the model class itself. Should not be in the eval part
+            #TODO: we might not want to use the training datat because of droupout etc. but it should give a indecation of the model performance???
+            # batch_embeds = torch.cat(batch_embeds)
+            # print(batch_embeds.shape)
+            model.eval()
+            valid_auc, len_valid= eval_model(model_name, data_type, device=device,
+                                save_plots=False,
+                                size=size,
+                                show_training_data=False,
+                                model=model,
+                                data_root=data_root)
+                                #train_embed=batch_embeds)
+            test_auc, len_test= test_model(model_name, data_type, device=device,
+                                save_plots=False,
+                                size=size,
+                                show_training_data=False,
+                                model=model,
+                                data_root=data_root)
+                                #train_embed=batch_embeds)
+            model.train()
+            # print('eval_auc', roc_auc, step)
+        print(f"[epoch {step} loss: {loss.item()} valid_auc (f{len_valid}): {valid_auc} test_auc (f{len_test}): {test_auc}]")
+
+    torch.save(model.state_dict(), model_dir / f"{model_name}.tch")
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Training defect detection as described in the CutPaste Paper.')
+    parser.add_argument('--type', default="camelyon",
+                        help='dataset type: BMAD dataset name or "custom" for arbitrary data_root')
+    parser.add_argument('--data_root', default=None,
+                        help='path to dataset root (required when --type custom)')
+    parser.add_argument('--config', default=None,
+                        help='override YAML config path (default: config/{type}_cutpaste.yaml)')
+    parser.add_argument('--no-pretrained', dest='pretrained', default=True, action='store_false',
+                        help='use pretrained values to initalize ResNet18 , (default: True)')
+
+    args = parser.parse_args()
+    print(args)
+
+    config_path = args.config if args.config else f"config/{args.type}_cutpaste.yaml"
+    print(f"reading config {config_path}...")
+    with open(config_path, 'r') as file:
+        config = yaml.safe_load(file)
+    print(config)
+
+
+    variant_map = {'normal':CutPasteNormal, 'scar':CutPasteScar, '3way':CutPaste3Way, 'union':CutPasteUnion}
+    variant = variant_map[config['variant']]
+
+    device = "cuda"
+    print(f"using device: {device}")
+
+    # create modle dir
+    Path(config['model_dir']).mkdir(exist_ok=True, parents=True)
+
+    data_type = args.type
+    print(f"training {data_type}")
+    run_training(data_type,
+                    model_dir=Path(config['model_dir']),
+                    epochs=config['epochs'],
+                    pretrained=config['pretrained'],
+                    test_epochs=config['test_epochs'],
+                    freeze_resnet=config['freeze_resnet'],
+                    learninig_rate=config['lr'],
+                    optim_name=config['optim'],
+                    batch_size=config['batch_size'],
+                    head_layer=config['head_layer'],
+                    device=device,
+                    cutpate_type=variant,
+                    workers=config['workers'],
+                    data_root=args.data_root)

@@ -1,0 +1,26 @@
+# DRAEM (Discriminatively trained Reconstruction Anomaly Embedding) config
+# Reference: Zavrtanik et al. (2021)
+# DTD textures are downloaded automatically to dtd_dir if not present.
+
+model:
+  name: draem
+  dtd_dir: ./datasets/dtd    # auto-downloaded on first run (~600 MB)
+
+train:
+  epochs: 100
+  batch_size: 4
+  num_workers: 8
+  accelerator: gpu            # gpu | cpu | mps
+  gpu: 0
+  seed: 42
+  data_root: ./datasets/synth23_pelvis_v7_png
+  output_root: ./results/draem
+  name: ~                     # required: experiment name
+
+extract:
+  split: test                 # test | valid
+  batch_size: 32
+  gpu: 0
+  map_size: 224
+  mask_threshold: 0.5
+  mask_output_format: png     # png | nifti

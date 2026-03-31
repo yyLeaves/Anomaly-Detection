@@ -1,0 +1,1453 @@
+{
+  "type1": [
+    {
+      "1BB031": {
+        "mr_start": 130,
+        "mr_end": 167,
+        "ct_start": 131,
+        "ct_end": 165,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB033": {
+        "mr_start": 108,
+        "mr_end": 122,
+        "ct_start": 109,
+        "ct_end": 120,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB033": {
+        "mr_start": 146,
+        "mr_end": 166,
+        "ct_start": 146,
+        "ct_end": 164,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB043": {
+        "mr_start": 112,
+        "mr_end": 120,
+        "ct_start": 112,
+        "ct_end": 118,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB043": {
+        "mr_start": 126,
+        "mr_end": 138,
+        "ct_start": 128,
+        "ct_end": 136,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB043": {
+        "mr_start": 152,
+        "mr_end": 164,
+        "ct_start": 154,
+        "ct_end": 160,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB050": {
+        "mr_start": 131,
+        "mr_end": 147,
+        "ct_start": 131,
+        "ct_end": 146,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB050": {
+        "mr_start": 156,
+        "mr_end": 169,
+        "ct_start": 156,
+        "ct_end": 167,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB059": {
+        "mr_start": 99,
+        "mr_end": 114,
+        "ct_start": 101,
+        "ct_end": 112,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB059": {
+        "mr_start": 120,
+        "mr_end": 127,
+        "ct_start": 122,
+        "ct_end": 126,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB059": {
+        "mr_start": 147,
+        "mr_end": 165,
+        "ct_start": 152,
+        "ct_end": 164,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB062": {
+        "mr_start": 84,
+        "mr_end": 102,
+        "ct_start": 84,
+        "ct_end": 100,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB062": {
+        "mr_start": 106,
+        "mr_end": 116,
+        "ct_start": 106,
+        "ct_end": 112,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB062": {
+        "mr_start": 140,
+        "mr_end": 160,
+        "ct_start": 140,
+        "ct_end": 156,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB066": {
+        "mr_start": 94,
+        "mr_end": 108,
+        "ct_start": 96,
+        "ct_end": 107,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB066": {
+        "mr_start": 126,
+        "mr_end": 163,
+        "ct_start": 128,
+        "ct_end": 160,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB071": {
+        "mr_start": 10,
+        "mr_end": 24,
+        "ct_start": 6,
+        "ct_end": 23,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB071": {
+        "mr_start": 73,
+        "mr_end": 104,
+        "ct_start": 75,
+        "ct_end": 100,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB071": {
+        "mr_start": 124,
+        "mr_end": 142,
+        "ct_start": 124,
+        "ct_end": 140,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB072": {
+        "mr_start": 120,
+        "mr_end": 165,
+        "ct_start": 122,
+        "ct_end": 162,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB076": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 0,
+        "ct_end": 11,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB076": {
+        "mr_start": 105,
+        "mr_end": 120,
+        "ct_start": 105,
+        "ct_end": 116,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB076": {
+        "mr_start": 130,
+        "mr_end": 150,
+        "ct_start": 130,
+        "ct_end": 148,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB082": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 0,
+        "ct_end": 13,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB082": {
+        "mr_start": 130,
+        "mr_end": 170,
+        "ct_start": 105,
+        "ct_end": 169,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB083": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 15,
+        "ct_end": 27,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB085": {
+        "mr_start": 100,
+        "mr_end": 116,
+        "ct_start": 100,
+        "ct_end": 114,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB085": {
+        "mr_start": 136,
+        "mr_end": 150,
+        "ct_start": 138,
+        "ct_end": 148,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB090": {
+        "mr_start": 149,
+        "mr_end": 174,
+        "ct_start": 149,
+        "ct_end": 174,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB091": {
+        "mr_start": 104,
+        "mr_end": 152,
+        "ct_start": 104,
+        "ct_end": 152,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB095": {
+        "mr_start": 98,
+        "mr_end": 132,
+        "ct_start": 102,
+        "ct_end": 130,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB098": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 4,
+        "ct_end": 14,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB098": {
+        "mr_start": 103,
+        "mr_end": 118,
+        "ct_start": 104,
+        "ct_end": 114,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB098": {
+        "mr_start": 132,
+        "mr_end": 157,
+        "ct_start": 135,
+        "ct_end": 156,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB099": {
+        "mr_start": 98,
+        "mr_end": 109,
+        "ct_start": 99,
+        "ct_end": 105,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB099": {
+        "mr_start": 137,
+        "mr_end": 150,
+        "ct_start": 137,
+        "ct_end": 148,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB100": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 14,
+        "ct_end": 27,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB100": {
+        "mr_start": 145,
+        "mr_end": 159,
+        "ct_start": 146,
+        "ct_end": 158,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB100": {
+        "mr_start": 167,
+        "mr_end": 175,
+        "ct_start": 167,
+        "ct_end": 173,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB102": {
+        "mr_start": 76,
+        "mr_end": 104,
+        "ct_start": 78,
+        "ct_end": 100,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB102": {
+        "mr_start": 128,
+        "mr_end": 143,
+        "ct_start": 128,
+        "ct_end": 141,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB109": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 7,
+        "ct_end": 21,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB109": {
+        "mr_start": 112,
+        "mr_end": 139,
+        "ct_start": 112,
+        "ct_end": 136,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB109": {
+        "mr_start": 147,
+        "mr_end": 163,
+        "ct_start": 148,
+        "ct_end": 160,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB111": {
+        "mr_start": 139,
+        "mr_end": 171,
+        "ct_start": 140,
+        "ct_end": 169,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB111": {
+        "mr_start": 139,
+        "mr_end": 171,
+        "ct_start": 140,
+        "ct_end": 169,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB145": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 8,
+        "ct_end": 19,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB145": {
+        "mr_start": 113,
+        "mr_end": 151,
+        "ct_start": 115,
+        "ct_end": 148,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB151": {
+        "mr_start": 88,
+        "mr_end": 105,
+        "ct_start": 90,
+        "ct_end": 104,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB151": {
+        "mr_start": 136,
+        "mr_end": 148,
+        "ct_start": 137,
+        "ct_end": 143,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1PA118": {
+        "mr_start": 0,
+        "mr_end": 104,
+        "ct_start": 3,
+        "ct_end": 76,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA133": {
+        "mr_start": 74,
+        "mr_end": 82,
+        "ct_start": 74,
+        "ct_end": 82,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA136": {
+        "mr_start": 98,
+        "mr_end": 121,
+        "ct_start": 100,
+        "ct_end": 121,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA147": {
+        "mr_start": 45,
+        "mr_end": 53,
+        "ct_start": 45,
+        "ct_end": 53,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA151": {
+        "mr_start": 47,
+        "mr_end": 53,
+        "ct_start": 46,
+        "ct_end": 54,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA152": {
+        "mr_start": 56,
+        "mr_end": 69,
+        "ct_start": 56,
+        "ct_end": 68,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA155": {
+        "mr_start": 6,
+        "mr_end": 131,
+        "ct_start": 15,
+        "ct_end": 86,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA163": {
+        "mr_start": 0,
+        "mr_end": 79,
+        "ct_start": 0,
+        "ct_end": 64,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA165": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 50,
+        "ct_end": 60,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA167": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 57,
+        "ct_end": 69,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA168": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 61,
+        "ct_end": 66,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA169": {
+        "mr_start": 4,
+        "mr_end": 97,
+        "ct_start": 8,
+        "ct_end": 82,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA170": {
+        "mr_start": 25,
+        "mr_end": 39,
+        "ct_start": 25,
+        "ct_end": 39,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1BC041": {
+        "mr_start": 17,
+        "mr_end": 24,
+        "ct_start": 12,
+        "ct_end": 21,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC048": {
+        "mr_start": 5,
+        "mr_end": 22,
+        "ct_start": 5,
+        "ct_end": 21,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC049": {
+        "mr_start": 15,
+        "mr_end": 25,
+        "ct_start": 13,
+        "ct_end": 26,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC054": {
+        "mr_start": 30,
+        "mr_end": 44,
+        "ct_start": 30,
+        "ct_end": 44,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC063": {
+        "mr_start": 50,
+        "mr_end": 59,
+        "ct_start": 52,
+        "ct_end": 65,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC067": {
+        "mr_start": 4,
+        "mr_end": 23,
+        "ct_start": 4,
+        "ct_end": 23,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC070": {
+        "mr_start": 8,
+        "mr_end": 18,
+        "ct_start": 4,
+        "ct_end": 15,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC075": {
+        "mr_start": 14,
+        "mr_end": 19,
+        "ct_start": 14,
+        "ct_end": 19,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC075": {
+        "mr_start": 23,
+        "mr_end": 36,
+        "ct_start": 22,
+        "ct_end": 36,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA234": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 38,
+        "ct_end": 42,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA234": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 57,
+        "ct_end": 63,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA239": {
+        "mr_start": 93,
+        "mr_end": 138,
+        "ct_start": 99,
+        "ct_end": 136,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA239": {
+        "mr_start": 137,
+        "mr_end": 164,
+        "ct_start": 146,
+        "ct_end": 165,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA292": {
+        "mr_start": 80,
+        "mr_end": 125,
+        "ct_start": 96,
+        "ct_end": 111,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA292": {
+        "mr_start": null,
+        "mr_end": null,
+        "ct_start": 140,
+        "ct_end": 150,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA305": {
+        "mr_start": 91,
+        "mr_end": 167,
+        "ct_start": 103,
+        "ct_end": 169,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA359": {
+        "mr_start": 156,
+        "mr_end": 179,
+        "ct_start": 158,
+        "ct_end": 179,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA368": {
+        "mr_start": 95,
+        "mr_end": 172,
+        "ct_start": 126,
+        "ct_end": 171,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BA379": {
+        "mr_start": 114,
+        "mr_end": 138,
+        "ct_start": null,
+        "ct_end": null,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB003": {
+        "mr_start": 98,
+        "mr_end": 124,
+        "ct_start": null,
+        "ct_end": null,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB005": {
+        "mr_start": 93,
+        "mr_end": 119,
+        "ct_start": 76,
+        "ct_end": 87,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB007": {
+        "mr_start": 122,
+        "mr_end": 147,
+        "ct_start": 118,
+        "ct_end": 142,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB008": {
+        "mr_start": 81,
+        "mr_end": 94,
+        "ct_start": null,
+        "ct_end": null,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB011": {
+        "mr_start": 119,
+        "mr_end": 173,
+        "ct_start": 120,
+        "ct_end": 172,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB016": {
+        "mr_start": 43,
+        "mr_end": 100,
+        "ct_start": 68,
+        "ct_end": 79,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB016": {
+        "mr_start": 126,
+        "mr_end": 138,
+        "ct_start": 126,
+        "ct_end": 137,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB026": {
+        "mr_start": 95,
+        "mr_end": 161,
+        "ct_start": 102,
+        "ct_end": 175,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB028": {
+        "mr_start": 77,
+        "mr_end": 120,
+        "ct_start": 85,
+        "ct_end": 104,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB030": {
+        "mr_start": 52,
+        "mr_end": 74,
+        "ct_start": 57,
+        "ct_end": 67,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1PA065": {
+        "mr_start": 88,
+        "mr_end": 131,
+        "ct_start": 93,
+        "ct_end": 97,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA079": {
+        "mr_start": 1,
+        "mr_end": 82,
+        "ct_start": 5,
+        "ct_end": 75,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA100": {
+        "mr_start": 57,
+        "mr_end": 90,
+        "ct_start": 55,
+        "ct_end": 66,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA114": {
+        "mr_start": 59,
+        "mr_end": 80,
+        "ct_start": 64,
+        "ct_end": 79,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1BB152": {
+        "mr_start": 229,
+        "mr_end": 241,
+        "ct_start": 229,
+        "ct_end": 241,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB171": {
+        "mr_start": 147,
+        "mr_end": 160,
+        "ct_start": 147,
+        "ct_end": 160,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB171": {
+        "mr_start": 186,
+        "mr_end": 192,
+        "ct_start": 186,
+        "ct_end": 192,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB173": {
+        "mr_start": 116,
+        "mr_end": 122,
+        "ct_start": 116,
+        "ct_end": 122,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB173": {
+        "mr_start": 126,
+        "mr_end": 134,
+        "ct_start": 126,
+        "ct_end": 134,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB175": {
+        "mr_start": 13,
+        "mr_end": 30,
+        "ct_start": 13,
+        "ct_end": 30,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB177": {
+        "mr_start": 112,
+        "mr_end": 132,
+        "ct_start": 112,
+        "ct_end": 132,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB179": {
+        "mr_start": 179,
+        "mr_end": 186,
+        "ct_start": 179,
+        "ct_end": 186,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB179": {
+        "mr_start": 143,
+        "mr_end": 157,
+        "ct_start": 143,
+        "ct_end": 157,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB182": {
+        "mr_start": 146,
+        "mr_end": 175,
+        "ct_start": 146,
+        "ct_end": 171,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB184": {
+        "mr_start": 116,
+        "mr_end": 129,
+        "ct_start": 116,
+        "ct_end": 129,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB189": {
+        "mr_start": 110,
+        "mr_end": 118,
+        "ct_start": 110,
+        "ct_end": 118,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB189": {
+        "mr_start": 146,
+        "mr_end": 160,
+        "ct_start": 146,
+        "ct_end": 160,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB200": {
+        "mr_start": 141,
+        "mr_end": 163,
+        "ct_start": 141,
+        "ct_end": 163,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB200": {
+        "mr_start": 171,
+        "mr_end": 179,
+        "ct_start": 171,
+        "ct_end": 179,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BB205": {
+        "mr_start": 54,
+        "mr_end": 100,
+        "ct_start": 54,
+        "ct_end": 100,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC004": {
+        "mr_start": 110,
+        "mr_end": 125,
+        "ct_start": 110,
+        "ct_end": 125,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC006": {
+        "mr_start": 75,
+        "mr_end": 100,
+        "ct_start": 75,
+        "ct_end": 100,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC006": {
+        "mr_start": 54,
+        "mr_end": 61,
+        "ct_start": 54,
+        "ct_end": 61,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC007": {
+        "mr_start": 42,
+        "mr_end": 74,
+        "ct_start": 42,
+        "ct_end": 74,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC007": {
+        "mr_start": 3,
+        "mr_end": 13,
+        "ct_start": 9,
+        "ct_end": 13,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC008": {
+        "mr_start": 9,
+        "mr_end": 20,
+        "ct_start": 9,
+        "ct_end": 20,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC008": {
+        "mr_start": 96,
+        "mr_end": 106,
+        "ct_start": 96,
+        "ct_end": 106,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC008": {
+        "mr_start": 121,
+        "mr_end": 132,
+        "ct_start": 121,
+        "ct_end": 132,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC009": {
+        "mr_start": 5,
+        "mr_end": 22,
+        "ct_start": 5,
+        "ct_end": 22,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC009": {
+        "mr_start": 107,
+        "mr_end": 126,
+        "ct_start": 107,
+        "ct_end": 126,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC009": {
+        "mr_start": 139,
+        "mr_end": 150,
+        "ct_start": 139,
+        "ct_end": 150,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC010": {
+        "mr_start": 2,
+        "mr_end": 15,
+        "ct_start": 4,
+        "ct_end": 15,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC014": {
+        "mr_start": 14,
+        "mr_end": 23,
+        "ct_start": 6,
+        "ct_end": 23,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC017": {
+        "mr_start": 140,
+        "mr_end": 165,
+        "ct_start": 140,
+        "ct_end": 165,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC017": {
+        "mr_start": 10,
+        "mr_end": 24,
+        "ct_start": 6,
+        "ct_end": 24,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC020": {
+        "mr_start": 50,
+        "mr_end": 70,
+        "ct_start": 50,
+        "ct_end": 70,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC023": {
+        "mr_start": 17,
+        "mr_end": 23,
+        "ct_start": 5,
+        "ct_end": 23,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC025": {
+        "mr_start": 4,
+        "mr_end": 9,
+        "ct_start": 2,
+        "ct_end": 9,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC027": {
+        "mr_start": 43,
+        "mr_end": 57,
+        "ct_start": 43,
+        "ct_end": 57,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC028": {
+        "mr_start": 3,
+        "mr_end": 23,
+        "ct_start": 3,
+        "ct_end": 23,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC031": {
+        "mr_start": 136,
+        "mr_end": 149,
+        "ct_start": 136,
+        "ct_end": 149,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC031": {
+        "mr_start": 11,
+        "mr_end": 19,
+        "ct_start": 11,
+        "ct_end": 19,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC034": {
+        "mr_start": 1,
+        "mr_end": 21,
+        "ct_start": 1,
+        "ct_end": 21,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC035": {
+        "mr_start": 16,
+        "mr_end": 45,
+        "ct_start": 9,
+        "ct_end": 45,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC038": {
+        "mr_start": 68,
+        "mr_end": 75,
+        "ct_start": 68,
+        "ct_end": 75,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC038": {
+        "mr_start": 83,
+        "mr_end": 88,
+        "ct_start": 83,
+        "ct_end": 88,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC038": {
+        "mr_start": 104,
+        "mr_end": 114,
+        "ct_start": 104,
+        "ct_end": 114,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC038": {
+        "mr_start": 137,
+        "mr_end": 160,
+        "ct_start": 137,
+        "ct_end": 172,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC038": {
+        "mr_start": 5,
+        "mr_end": 16,
+        "ct_start": 5,
+        "ct_end": 16,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1BC039": {
+        "mr_start": 1,
+        "mr_end": 35,
+        "ct_start": 1,
+        "ct_end": 35,
+        "body_part": "brain"
+      }
+    },
+    {
+      "1PA173": {
+        "mr_start": 15,
+        "mr_end": 50,
+        "ct_start": 17,
+        "ct_end": 50,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA176": {
+        "mr_start": 59,
+        "mr_end": 65,
+        "ct_start": 59,
+        "ct_end": 65,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA177": {
+        "mr_start": 70,
+        "mr_end": 73,
+        "ct_start": 70,
+        "ct_end": 73,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA178": {
+        "mr_start": 44,
+        "mr_end": 51,
+        "ct_start": 44,
+        "ct_end": 51,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA180": {
+        "mr_start": 1,
+        "mr_end": 88,
+        "ct_start": 1,
+        "ct_end": 88,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA182": {
+        "mr_start": 78,
+        "mr_end": 124,
+        "ct_start": 78,
+        "ct_end": 130,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA183": {
+        "mr_start": 74,
+        "mr_end": 113,
+        "ct_start": 74,
+        "ct_end": 113,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA185": {
+        "mr_start": 56,
+        "mr_end": 62,
+        "ct_start": 56,
+        "ct_end": 62,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA188": {
+        "mr_start": 42,
+        "mr_end": 49,
+        "ct_start": 42,
+        "ct_end": 49,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PC004": {
+        "mr_start": 21,
+        "mr_end": 26,
+        "ct_start": 21,
+        "ct_end": 26,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PC010": {
+        "mr_start": 47,
+        "mr_end": 49,
+        "ct_start": 47,
+        "ct_end": 49,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PC015": {
+        "mr_start": 15,
+        "mr_end": 21,
+        "ct_start": 15,
+        "ct_end": 21,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PC024": {
+        "mr_start": 50,
+        "mr_end": 52,
+        "ct_start": 50,
+        "ct_end": 52,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PC029": {
+        "mr_start": 1,
+        "mr_end": 74,
+        "ct_start": 1,
+        "ct_end": 52,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PC033": {
+        "mr_start": 33,
+        "mr_end": 38,
+        "ct_start": 33,
+        "ct_end": 38,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PC037": {
+        "mr_start": 46,
+        "mr_end": 87,
+        "ct_start": 46,
+        "ct_end": 87,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PC037": {
+        "mr_start": 1,
+        "mr_end": 16,
+        "ct_start": 1,
+        "ct_end": 15,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA025": {
+        "mr_start": 0,
+        "mr_end": 68,
+        "ct_start": 0,
+        "ct_end": 62,
+        "body_part": "pelvis"
+      }
+    },
+    {
+      "1PA030": {
+        "mr_start": 68,
+        "mr_end": 125,
+        "ct_start": 72,
+        "ct_end": 125,
+        "body_part": "pelvis"
+      }
+    }
+  ]
+}

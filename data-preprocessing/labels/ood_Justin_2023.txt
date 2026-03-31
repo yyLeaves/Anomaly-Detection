@@ -1,0 +1,120 @@
+1BB031,130,167,131,165,1
+1BB031,0,185,na,na,4, Center B contrast agent used.
+1BB033,108,122,109,120,1
+1BB033,146,166,146,164,1
+1BB033,0,180,na,na,4, Center B contrast agent used.
+1BB034,0,197,na,na,4, Center B contrast agent used.
+1BB039,0,195,na,na,4, Center B contrast agent used.
+1BB041,0,192,na,na,4, Center B contrast agent used.
+1BB043,112,120,112,118,1
+1BB043,126,138,128,136,1 
+1BB043,152,164,154,160,1 
+1BB043,0,175,na,na,4, Center B contrast agent used.
+1BB044,0,187,na,na,4, Center B contrast agent used.
+1BB048,0,166,na,na,4, Center B contrast agent used.
+1BB049,0,195,na,na,4, Center B contrast agent used.
+1BB050,131,147,131,146,1 
+1BB050,156,169,156,167,1 
+1BB050,0,170,na,na,4, Center B contrast agent used.
+1BB051,116,178,na,na,6, Huge artifact MR nothing seen on CT
+1BB051,0,197,na,na,4, Center B contrast agent used.
+1BB052,0,184,na,na,4, Center B contrast agent used.
+1BB059,99,114,101,112,1
+1BB059,120,127,122,126,1
+1BB059,147,165,152,164,1
+1BB059,0,183,na,na,4, Center B contrast agent used.
+1BB062,84,102,84,100,1
+1BB062,106,116,106,112,1
+1BB062,140,160,140,156,1
+1BB062,0,217,na,na,4, Center B contrast agent used.
+1BB066,94,108,96,107,1, 
+1BB066,126,163,128,160,1 
+1BB066,0,181,na,na,4, Center B contrast agent used.
+1BB071,10,24,6,23,1, Theeth implants
+1BB071,73,104,75,100,1
+1BB071,124,142,124,140,1
+1BB071,0,195,na,na,4, Center B contrast agent used.
+1BB072,120,165,122,162,1
+1BB072,0,177,na,na,4, Center B contrast agent used.
+1BB073,0,167,na,na,4, Center B contrast agent used.
+1BB075,0,193,na,na,4, Center B contrast agent used.
+1BB076,na,na,0,11,1, Theeth implants
+1BB076,105,120,105,116,1
+1BB076,130,150,130,148,1
+1BB076,0,190,na,na,4, Center B contrast agent used.
+1BB079,0,183,na,na,4, Center B contrast agent used.
+1BB082,na,na,0,13,1, Theeth implants
+1BB082,130,170,105,169,1, Metal screw in skull.
+1BB082,0,188,na,na,4
+1BB083,na,na,15,27,1, Theeth implants
+1BB083,0,190,na,na,4, Center B contrast agent used.
+1BB085,100,116,100,114,1
+1BB085,136,150,138,148,1
+1BB085,0,195,na,na,4, Center B contrast agent used.
+1BB090,149,174,149,174,1
+1BB090,0,175,na,na,4, Center B contrast agent used.
+1BB091,104,152,104,152,1
+1BB091,0,171,na,na,4, Center B contrast agent used.
+1BB095,98,132,102,130,1
+1BB095,0,191,na,na,4, Center B contrast agent used.
+1BB096,na,na,95,115,5, Part of skull missing for few slices, not visible on MR.
+1BB096,0,197,na,na,4, Center B contrast agent used.
+1BB098,na,na,4,14,1, Theeth implants
+1BB098,103,118,104,114,1
+1BB098,132,157,135,156,1
+1BB098,0,169,na,na,4, Center B contrast agent used.
+1BB099,98,109,99,105,1
+1BB099,137,150,137,148,1
+1BB099,0,175,na,na,4, Center B contrast agent used.
+1BB100,na,na,14,27,1, Theeth implants
+1BB100,145,159,146,158,1
+1BB100,167,175,167,173,1
+1BB100,0,181,na,na,4, Center B contrast agent used.
+1BB102,76,104,78,100,1
+1BB102,128,143,128,141,1
+1BB102,0,177,na,na,4, Center B contrast agent used.
+1BB109,na,na,7,21,1, Theeth implants
+1BB109,112,139,112,136,1
+1BB109,147,163,148,160,1
+1BB109,0,172,na,na,4, Center B contrast agent used.
+1BB111,139,171,140,169,1
+1BB111,139,171,140,169,1
+1BB111,0,178,na,na,4, Center B contrast agent used.
+1BB145,na,na,8,19,1, Theeth implants
+1BB145,113,151,115,148,1
+1BB145,0,184,na,na,4, Center B contrast agent used.
+1BB151,88,105,90,104,1
+1BB151,136,148,137,143,1
+1BB151,0,166,na,na,4, Center B contrast agent used.
+1PA118,0,104,3,76,1, OOD due to hip implant.
+1PA133,63,73,na,na,7, Markers
+1PA133,74,82,74,82,1,Bright spots on CT, black spots on MR. 
+1PA136,66,72,na,na,7 Markers
+1PA136,98,121,100,121,1, Articfat due two metal nail in spine.
+1PA137,74,80,na,na,7, Markers
+1PA138,65,71,na,na,7, Markers
+1PA141,52,62,na,na,7, Markers
+1PA142,65,74,na,na,7, Markers
+1PA144,30,114,na,na,6, MR shows atrifact due two some kind of metall not visible in CT (taken at different times?)
+1PA146,53,59,na,na,7, Markers
+1PA147,0,84,1,73,1 OOD due to full hip implant.
+1PA147,45,53,45,53,1, Bright spots on CT, hard to tell on MR.
+1PA148,53,60,na,na,7, Markers
+1PA148,73,80,na,na,7, Markers
+1PA150,60,68,na,na,7, Markers
+1PA150,8,90,11,88,6, OOD due to some kind of foreign object going from the testicles to the bowel.
+1PA151,75,83,na,na,7, Markers
+1PA151,47,53,46,54,1, Some bright spots visible (local radiotherapy with implants) in CT difficult to spot in MR
+1PA152,56,69,56,68,1, Weird birght short little lines in CT, MR shows black spots. Not as bright as other cases
+1PA152,80,88,na,na,7, Markers
+1PA155,6,131,15,86,1, OOD due to hip implant.
+1PA156,56,63,na,na,7, Markers
+1PA161,65,74,na,na,7, Markers
+1PA163,0,79,0,64,1, OOD due to hip implant.
+1PA165,na,na,50,60,1, Bright spots on CT, hard to tell on MR.
+1PA165,63,72,na,na,7 Markers
+1PA167,na,na,57,69,1, Bright spots on CT, hard to tell on MR.
+1PA167,62,68,na,na,7 Markers
+1PA168,na,na,61,66,1, Bright spots on CT, hard to tell on MR.
+1PA169,4,97,8,82,1, OOD due to hip implant.
+1PA170,25,39,25,39,1, Weird birght short little lines in CT MR shows black spots Not as bright as other cases.
