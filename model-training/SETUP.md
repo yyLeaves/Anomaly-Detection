@@ -113,13 +113,13 @@ CUDA_VISIBLE_DEVICES=1 python extract.py --config config/fastflow.yaml \
 # Exp 3: RadImageNet ResNet50 backbone
 CUDA_VISIBLE_DEVICES=1,2,3 python train.py --config config/fastflow.yaml --name test_fastflow_radimagenet \
     --backbone radimagenet_resnet50 \
-    --radimagenet_ckpt RadImageNet_pytorch/ResNet50.pt
+    --radimagenet_ckpt ../RadImageNet_pytorch/ResNet50.pt
 
 CUDA_VISIBLE_DEVICES=1 python extract.py --config config/fastflow.yaml \
     --checkpoint results/fastflow/test_fastflow_radimagenet/checkpoints/last.ckpt \
     --output_dir results/fastflow/test_fastflow_radimagenet/extract_out \
     --backbone radimagenet_resnet50 \
-    --radimagenet_ckpt RadImageNet_pytorch/ResNet50.pt
+    --radimagenet_ckpt ../RadImageNet_pytorch/ResNet50.pt
 
 # ── CFlow ─────────────────────────────────────────────────────────────────────
 CUDA_VISIBLE_DEVICES=1,2,3 python train.py --config config/cflow.yaml --name test_cflow

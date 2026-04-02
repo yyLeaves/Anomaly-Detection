@@ -13,7 +13,10 @@ python extract.py --config config/rd4ad.yaml \\
                   [--gpu 0] \\
                   [--map_size 224] \\
                   [--mask_threshold 0.5] \\
-                  [--mask_output_format png]
+                  [--mask_output_format png] \\
+                  [--normal_train_dir train/good] \\
+                  [--num_workers 8] \\
+                  [--extensions .png]
 
 CLI flags override the YAML extract section when provided.
 Anomaly maps are saved as .npy; masks as .png or .nii.gz.
@@ -147,6 +150,12 @@ def parse_args() -> argparse.Namespace:
                         help="Override model backbone (e.g. radimagenet_resnet50)")
     parser.add_argument("--radimagenet_ckpt",   type=str,  default=None,
                         help="Path to RadImageNet .pt checkpoint")
+    parser.add_argument("--normal_train_dir",   type=str,  default=None,
+                        help="Relative path to training normal dir (default: train/good)")
+    parser.add_argument("--num_workers",        type=int,  default=None,
+                        help="DataLoader worker count")
+    parser.add_argument("--extensions",         type=str,  nargs="+", default=None,
+                        help="Image file extensions to load (default: .png)")
     return parser.parse_args()
 
 
@@ -158,6 +167,9 @@ def _merge_config(cfg, args: argparse.Namespace):
         "extract.mask_threshold":     args.mask_threshold,
         "extract.map_size":           args.map_size,
         "extract.mask_output_format": args.mask_output_format,
+        "extract.normal_train_dir":   args.normal_train_dir,
+        "extract.num_workers":        args.num_workers,
+        "extract.extensions":         args.extensions,
         "model.backbone":             args.backbone,
         "model.radimagenet_ckpt":     args.radimagenet_ckpt,
     }
@@ -195,16 +207,20 @@ def main() -> None:
 
     normal_test_dirs, abnormal_dir, mask_dir = _resolve_split_dirs(data_root, ecfg.split)
 
+    normal_train_dir = OmegaConf.select(ecfg, "normal_train_dir") or "train/good"
+    num_workers      = int(OmegaConf.select(ecfg, "num_workers") or 8)
+    extensions       = tuple(OmegaConf.select(ecfg, "extensions") or [".png"])
+
     datamodule = Folder(
         name=f"{model_name}_{ecfg.split}",
         root=str(data_root),
-        normal_dir="train/good",
+        normal_dir=normal_train_dir,
         normal_test_dir=normal_test_dirs,
         abnormal_dir=abnormal_dir,
         mask_dir=mask_dir,
         eval_batch_size=ecfg.batch_size,
-        num_workers=8,
-        extensions=(".png",),
+        num_workers=num_workers,
+        extensions=extensions,
         test_split_mode=TestSplitMode.FROM_DIR,
         val_split_mode=ValSplitMode.NONE,
         test_split_ratio=0.0,
