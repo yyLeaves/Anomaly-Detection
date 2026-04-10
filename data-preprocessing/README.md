@@ -24,6 +24,16 @@ These scripts handle the entire pipeline from loading to final export. Each exis
 | **processing_utils.py** | Manages the geometry pipeline: padding, resizing, cropping, and min-max normalization. |
 | **io_utils.py** | Standardized saving/loading for NIfTI and PNG to ensure consistent data types. |
 | **path_utils.py** | Handles the automated creation of the `img`, `label`, and `bodymask` subfolder structures. |
+| **label_generator.py** | Parses raw OOD text files into structured JSON annotations for implants and other anomalies. |
+
+
+### 3. Annotation & Label Mapping (`labels/`)
+The Out-of-Distribution (OOD) metadata is consolidated into two JSON files:
+
+* **`labels_implant.json`**: Contains slice-level annotations specifically for **Type 1 (Implants)**.
+* **`labels_others.json`**: Contains annotations for **all other anomaly categories** (Types 2–7).
+
+Each entry provides the `mr_start/end` and `ct_start/end` slice indices, along with the `body_part` (Brain or Pelvis) classification.
 
 ---
 
