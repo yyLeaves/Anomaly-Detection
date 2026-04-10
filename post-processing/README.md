@@ -41,19 +41,22 @@ Raw prediction masks from the model extraction step:
 
 ```
 <extraction_output_root>/
-  anomaly_maps/test/{good,Ungood}/img/     ← per-slice .npy anomaly scores
-  prediction_masks/test/{good,Ungood}/img/ ← binary PNG masks (0 or 255)
+  anomaly_maps/test/{good,Ungood,Ungood_whole_patient_scans}/img/     ← per-slice .npy anomaly scores
+  prediction_masks/test/{good,Ungood,Ungood_whole_patient_scans}/img/ ← binary PNG masks (0 or 255)
 ```
 
 Body masks and ground-truth labels from the preprocessing step:
 
 ```
 <dataset_root>/test/
-  good/img/        ← source MR slices (PNG)
-  good/bodymask/   ← binary body masks (PNG)
-  Ungood/img/
+  good/img/                          ← ID patient slices
+  good/bodymask/
+  Ungood/img/                        ← annotated OOD slices only
   Ungood/bodymask/
-  Ungood/label/    ← ground-truth anomaly masks (PNG)
+  Ungood/label/                      ← ground-truth masks
+  Ungood_whole_patient_scans/img/    ← ALL slices of OOD patients (for patient-level eval)
+  Ungood_whole_patient_scans/bodymask/
+  Ungood_whole_patient_scans/label/  ← GT masks (zero on non-annotated slices)
 ```
 
 ---
@@ -112,11 +115,11 @@ Three variants were evaluated on the validation set to select the best trade-off
 
 ## Evaluation
 
-`evaluate_model_outputs.py` computes metrics at three granularities:
+`evaluate_model_outputs.py` computes metrics at three granularities, each using a different subset of the data:
 
-- **Pixel level**: precision, recall, Dice score, false negative rate, balanced accuracy (aggregated over all prediction–ground-truth pixel pairs).
-- **Slice level**: each 2D slice classified as positive/negative; standard binary classification metrics.
-- **Patient level**: mean positive fraction (α_mean) per patient. Patients classified as anomalous if α_mean ≥ threshold; metrics reported for multiple thresholds (default: 0.0, 0.02, 0.05, 0.1).
+- **Pixel level**: precision, recall, Dice score, false negative rate, balanced accuracy. Evaluated on `test/good/` and `test/Ungood/` only — the annotated OOD slices and clean ID slices. Slices from `Ungood_whole_patient_scans/` are excluded.
+- **Slice level**: each 2D slice classified as positive/negative; standard binary classification metrics. Same data scope as pixel level — `Ungood_whole_patient_scans/` slices are excluded via the `exclude_from_slice_metrics` flag.
+- **Patient level**: mean positive fraction (α_mean) per patient. Unlike pixel/slice metrics, this level uses **all** slices including `Ungood_whole_patient_scans/`, because a clinical system receives the entire MR volume and must decide whether the patient is OOD. For ID patients, all slices come from `test/good/`. For OOD patients, all slices come from `Ungood_whole_patient_scans/` (most of which are normal). The patient is classified as anomalous if α_mean ≥ threshold; metrics are reported for multiple thresholds (default: 0.0, 0.02, 0.05, 0.1).
 
 `main_pipeline.py` evaluates both the raw input masks and the stage-2 output (`02_morphology_png`) and writes both to `metrics/metrics_summary.json`. Stage 3 (`03_consecutive_filtered_png`) is the final mask used for 3D NIfTI export and qualitative inspection; evaluation is on stage 2.
 

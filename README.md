@@ -194,12 +194,18 @@ All variants share the same folder layout expected by `model-training/`:
 ├── valid/good/img/
 ├── valid/Ungood/img/
 ├── valid/Ungood/label/
-├── test/good/img/
+├── test/good/img/                              # ID patient slices
 ├── test/good/bodymask/
-├── test/Ungood/img/
+├── test/Ungood/img/                            # Only annotated OOD slices
 ├── test/Ungood/bodymask/
-└── test/Ungood/label/
+├── test/Ungood/label/                          # Ground-truth masks for OOD slices
+└── test/Ungood_whole_patient_scans/            # ALL slices of OOD patients (for patient-level eval)
+    ├── img/
+    ├── bodymask/
+    └── label/                                  # GT masks (nonzero on annotated slices, zero elsewhere)
 ```
+
+> **Why two Ungood folders?** `Ungood/` contains only the slices with visible artifacts — used for pixel- and slice-level evaluation. `Ungood_whole_patient_scans/` contains every slice of the same patients — used for patient-level evaluation, where the system must decide from the full volume whether to flag the patient.
 
 ---
 

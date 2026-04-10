@@ -48,7 +48,9 @@ All driver scripts follow a standardized 5-step pipeline:
     * **Square Padding**: Slices are center-padded to a 1:1 aspect ratio.
     * **Resizing**: Slices are interpolated to a base size of **240x240**.
     * **Center Crop**: A final crop to **224x224** is performed to remove edge artifacts.
-5. **Structured Export**: Slices are sorted into `train`, `valid`, or `test` directories. A specialized **"Whole Patient"** export is performed for test cases to allow for full volumetric evaluation.
+5. **Structured Export**: Slices are sorted into `train`, `valid`, or `test` directories. For OOD test patients, two exports are created:
+    * **`test/Ungood/`**: Only the annotated anomalous slices (with GT masks) — used for pixel- and slice-level evaluation.
+    * **`test/Ungood_whole_patient_scans/`**: All slices of the same patient — used for patient-level evaluation, where the full volume is needed to simulate a clinical decision.
 
 ---
 
