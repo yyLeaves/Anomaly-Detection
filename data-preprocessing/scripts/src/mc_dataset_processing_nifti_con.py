@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import sys
 import json
 import random
@@ -184,23 +185,28 @@ if __name__ == "__main__":
     df_overview = pd.read_excel(excel_path, sheet_name="MR")
     ids_all = [i for i in df_overview["ID"].tolist() if i.startswith("1P")]
 
-    with open("/home/user/jverhoek/sct-ood-dataset/labels/labels_implant.json") as f:
-        data_implant = json.load(f)
-    
-    df_labels = pd.DataFrame([{"id": k, **v} for item in data_implant['type1'] for k, v in item.items()])
-    list_na_ids = df_labels[df_labels.isna().any(axis=1)]['id'].tolist()
-    df_labels = df_labels.dropna().query("body_part == 'pelvis'")
+    root_dir = Path(__file__).resolve().parents[2] 
+    label_implant_path = root_dir / "labels" / "labels_implant.json"
+    label_others_path = root_dir / "labels" / "labels_others.json"
+
+    with open(label_implant_path, "r") as f:
+        raw_data = json.load(f)['type1']
+
+    implant_list = raw_data['type1'] if isinstance(raw_data, dict) and 'type1' in raw_data else raw_data
+    df_labels_1 = pd.DataFrame([{"id": k, **v} for item in implant_list for k, v in item.items()])
+    list_na_ids = df_labels_1[df_labels_1.isna().any(axis=1)]['id'].tolist()
+    df_labels_1 = df_labels_1.dropna().query("body_part == 'pelvis'")
     
     anomaly_range = {
         row.id: (int(min(row.ct_start, row.mr_start)), int(max(row.ct_end, row.mr_end))) 
-        for row in df_labels.itertuples()
+        for row in df_labels_1.itertuples()
     }
 
-    ids_abnormal_all = df_labels['id'].tolist()
+    ids_abnormal_all = df_labels_1['id'].tolist()
     for bad_id in ['1PA030', '1PA170', '1PC029', '1PC015']:
         if bad_id in ids_abnormal_all: ids_abnormal_all.remove(bad_id)
 
-    with open("/home/user/jverhoek/sct-ood-dataset/labels/labels_others.json") as f:
+    with open(label_others_path, "r") as f:
         data_other = json.load(f)
     ids_other = [pid for item in data_other['types_2_to_7'] for pid, info in item.items() 
                  if pid.startswith("1P") and str(info.get("type")) in {"2", "3", "4", "5", "6"}]

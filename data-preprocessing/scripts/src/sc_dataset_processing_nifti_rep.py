@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import sys
 import json
 import random
@@ -186,7 +187,11 @@ if __name__ == "__main__":
     df_overview = pd.read_excel(excel_path, sheet_name="MR")
     ids_all = [i for i in df_overview["ID"].tolist() if i.startswith("1PA")]
 
-    with open("/home/user/jverhoek/sct-ood-dataset/labels/labels_implant.json") as f:
+    # Load JSON Labels
+    root_dir = Path(__file__).resolve().parents[2]
+    label_path = root_dir / "labels" / "labels_implant.json"
+
+    with open(label_path, "r") as f:
         data_implant = json.load(f)
     
     df_labels = pd.DataFrame([{"id": k, **v} for item in data_implant['type1'] for k, v in item.items()])
