@@ -1,4 +1,4 @@
-# MROOD-TRAIN
+# model-training
 
 Unified training and feature-extraction pipeline for medical anomaly detection models.
 
@@ -62,6 +62,7 @@ bash scripts/run_pipeline.sh fastflow ./datasets/my_data exp1 0,1,2 myenv
 ```
 
 ### Individual Steps
+> For manual installation steps and per-model test run commands, see [SETUP.md](SETUP.md).
 
 ```bash
 # 1. Setup environment (creates conda env, installs deps, downloads RadImageNet weights)
@@ -116,10 +117,26 @@ python extract.py --config config/<model>.yaml \
                   --output_dir /path/to/outputs
 ```
 
+## RadImageNet Backbone
+
+FastFlow supports using a [RadImageNet](https://github.com/BMEII-AI/RadImageNet)-pretrained ResNet50 as backbone instead of the default ImageNet weights.
+
+`scripts/setup.sh` downloads the weights automatically to `RadImageNet_pytorch/ResNet50.pt`.
+
+To use RadImageNet as backbone, set in the model's config YAML:
+
+```yaml
+model:
+  backbone: radimagenet_resnet50
+  radimagenet_ckpt: ~              # auto-resolved to RadImageNet_pytorch/ResNet50.pt
+```
+
 ## Directory Structure
 
 ```
-MROOD-TRAIN/
+model-training/
+├── README.md                 # This file
+├── SETUP.md                  # Step-by-step install commands and per-model test runs
 ├── train.py                  # Unified training entry point
 ├── extract.py                # Unified feature extraction entry point
 ├── scripts/
