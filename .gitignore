@@ -97,3 +97,5 @@ filtered_metrics.json
 *.pyo
 .ipynb_checkpoints/
 /model-training/datasets
+/visualizations/volumes
+/visualizations/results_visualization

@@ -316,10 +316,11 @@ def visualize_anomaly_pairs(
 
         raw_2d = project_to_2d(raw.data)
         masked_2d = project_to_2d(masked.data)
-        diff = masked_2d - raw_2d
+        diff =  masked_2d -raw_2d
 
         raw_norm = normalise_for_display(raw_2d)
         masked_norm = normalise_for_display(masked_2d)
+        diff_pos = np.clip(diff, 0.0, None)
         diff_norm = normalise_for_display(diff)
 
         image_relative = apply_replacements(relative, image_replacements)
@@ -331,7 +332,7 @@ def visualize_anomaly_pairs(
         panels: list[tuple[str, np.ndarray]] = [
             ("Original Anomaly", raw_norm),
             ("Body-masked Anomaly", masked_norm),
-            ("Masked - Original", diff_norm),
+            #("Masked - Original", diff_norm),
         ]
         if overlay_panel is not None:
             panels.append(("Overlay", overlay_panel))
@@ -399,23 +400,26 @@ def _resolve_thresholded_path(root: Path, relative: Path) -> tuple[Path | None, 
 
 
 def _binarise_for_display(data: np.ndarray, *, source_dtype: np.dtype, threshold: float) -> np.ndarray:
-    """Convert a thresholded output to a binary map in [0, 1] for display."""
     arr = np.asarray(data, dtype=np.float32)
     arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
     if arr.size == 0:
         return np.zeros_like(arr, dtype=np.float32)
 
+    arr_min = float(np.min(arr))
+    arr_max = float(np.max(arr))
     unique = np.unique(arr)
-    if unique.size <= 3 and float(np.min(arr)) >= 0.0:
+
+    if unique.size <= 3 and arr_min >= 0.0 and arr_max <= 1.0:
         return (arr > 0.0).astype(np.float32, copy=False)
 
     if np.issubdtype(source_dtype, np.integer):
+        if arr_max <= 1.0:
+            return (arr >= threshold).astype(np.float32, copy=False)
         info = np.iinfo(source_dtype)
         scaled = threshold * float(info.max) if threshold <= 1.0 else threshold
         return (arr >= scaled).astype(np.float32, copy=False)
 
     return (arr >= threshold).astype(np.float32, copy=False)
-
 
 def visualize_anomaly_thresholded_pairs(
     *,

@@ -4,7 +4,7 @@
 # ============ Paths Configuration ============
 paths:
   #validation_masked_pred_masks
-  output_base: "./masks_ab/omer"
+  output_base: "./masks_ab"
   
   # Output directories
   visualization_base: "./visualizations"
